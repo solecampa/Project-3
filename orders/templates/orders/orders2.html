@@ -23,13 +23,16 @@ body {
 </style>
 
 
+</nav>    
+
+
 
  
 
 
-    {% if messages %}
+    {% if message %}
     
-    <div class="alert alert-info alert-dismissable">
+    <div id="alerta" class="alert alert-dismissable">
             {{message}}
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         
@@ -125,6 +128,7 @@ body {
                     </li>
                     {% endfor %}
                 </ul>
+                <p>Special includes = Extra cheese, Fresh garlic, Green peppers, Canadian Bacon and Onions</p>
             </div>
 
             <!-- LARGE -->
@@ -213,7 +217,7 @@ body {
                 </ul>
             </div>
 
-
+           
             
         </div>  
 
@@ -234,9 +238,12 @@ body {
                         <div class="row text-center">
                             <div class="col-3">
                                 <h4>{{p.name}}</h4>
-                            </div>
+                                
+                                   
+                                
+                                </div>
                             
-                            <div class="col-9">
+                            <div  class="col-9">
 
                                 <form id="formulario" action="{% url 'orders' %}" method="post">
                                     {% csrf_token %}
@@ -307,6 +314,7 @@ body {
                     </li>
                     {% endfor %}
                 </ul>
+                <p>Special includes = Extra cheese, Fresh garlic, Green peppers, Canadian Bacon and Onions</p>
             </div>
 
             <!-- LARGE -->
@@ -393,9 +401,12 @@ body {
                     </li>
                     {% endfor %}
                 </ul>
+                
+                
+
             </div>
 
-
+            
             
         </div>  
 
@@ -410,10 +421,13 @@ body {
     
     <div  class="container text-center contenedor ">
         <h1 class="text-center">Subs</h1>
+        <p>Adding Mashrooms, Onions, Green peppers or extra cheese = +$0.5</p>
         <div class="row ">
             
             <div class="col-3 text-center" >
+                
                 <h3>Subs</h3>
+                
                 <ul>
                     {% for p in Subs %}
                     <li>
@@ -424,7 +438,7 @@ body {
                 </ul>
             </div>
 
-            <div class="col-3 text-center" >
+            <div class="col-4 text-center" >
                 <h3 class="ml-5">Small</h3>
                 <ul>
                     {% for p in SubsSmall %}
@@ -434,12 +448,31 @@ body {
                             <input class="form-control-plaintext" type="hidden" value= "Subs"  name="class" >
                             <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
                             
+                            <select class="form-control-sm" name="subtopping" required >
+                                <option value="">Pick a topping</option>
+                                {% for t in SubToppings %}
+                                    {%if t.id == 1 %}
+                                    <option value="">Without topping</option>
+                                    {% endif %}
+                                    {%if t.id == 11 %}
+                                    <option value="{{t.id}}">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 4 %}
+                                    <option value="{{t.id}}">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 5 %}
+                                    <option value="{{t.id}}">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 21 %}
+                                    <option value="{{t.id}}">{{t.item}}</option>
+                                    {% endif %}
+
+
+                                {% endfor %}
+                            </select>
+
+                            <button id="boton3" class="btn text-center"> ${{p.price}} </button>
                         
-                        {%if p.id == 30 or p.id == 31 or p.id == 32 or p.id == 33 or p.id == 34 or p.id == 35 or p.id == 36 or p.id == 37%}
-                        <button id="boton3" class="btn text-center "> + {{p.price}} </button>  
-                        {% else %}
-                        <button id="boton3" class="btn text-center"> ${{p.price}} </button>
-                        {%endif%}
                         </form>
                     </li>
                     {% endfor %}
@@ -449,30 +482,48 @@ body {
                 
             </div>
             
-            <div class="col-3" >
+            <div class="col-4" >
                 <h3 class="ml-5" >Large</h3>
                 
-                <ul>
+ <ul>
                     {% for p in SubsLarge %}
-                    <li>
+                    <li id="sublist">
                         <form id="formulario" action="{% url 'orders' %}" method="post">
                             {% csrf_token %}
                             <input class="form-control-plaintext" type="hidden" value= "Subs"  name="class" >
                             <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
                             
+                            <select class="form-control-sm" name="subtopping" required >
+                                <option value="">Pick a topping</option>
+                                {% for t in SubToppings %}
+                                    {%if t.id == 1 %}
+                                    <option value="">Without topping</option>
+                                    {% endif %}
+                                    {%if t.id == 11 %}
+                                    <option value="11">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 4 %}
+                                    <option value="4">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 5 %}
+                                    <option value="4">{{t.item}}</option>
+                                    {% endif %}
+                                    {%if t.id == 21 %}
+                                    <option value="21">{{t.item}}</option>
+                                    {% endif %}
+
+
+                                {% endfor %}
+                            </select>
+
+                            <button id="boton3" class="btn text-center"> ${{p.price}} </button>
                         
-                        {%if p.id == 30 or p.id == 31 or p.id == 32 or p.id == 33 or p.id == 34 or p.id == 35 or p.id == 36 or p.id == 37%}
-                        <button id="boton3" class="btn text-center "> + {{p.price}} </button>  
-                        {% else %}
-                        <button id="boton3" class="btn text-center"> ${{p.price}} </button>
-                        {%endif%}
                         </form>
                     </li>
                     {% endfor %}
                 </ul>
                 
             </div>
-
 
             
         </div>  

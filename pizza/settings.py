@@ -124,6 +124,7 @@ STATIC_URL = '/static/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sole.prueba.app@gmail.com'
-EMAIL_HOST_PASSWORD = "probando_prueba"
+EMAIL_HOST_PASSWORD = os.environ.get('PASSWORDSOLEAPP')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+

@@ -22,6 +22,15 @@
 
 
 
+{% if message %}
+    
+<div id="alerta" class="alert alert-dismissable">
+        {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    
+</div>
+
+{% endif %}
  
 
 
@@ -37,26 +46,28 @@
                 </div>
                 <div class="col-3">
                     {% if p.category == None %}
-                        {{"-"}} 
+                        {{""}} 
                     {% else %}
                         {{p.category}}
                     {%endif%} 
-                </div>
-                <div class="col-3">
-                    {{p.price}}
-                    -
                     {% if p.size == None %}
-                        {{"-"}} 
+                    {{""}} 
                     {% else %}
-                        {{p.size}}
+                    {{p.size}}
                     {%endif%} 
                 </div>
+
                 <div class="col-3">
                     
                     {% for t in p.topping.all %} 
-                        {{t}}-
+                        | {{t.item}} |
                     {% endfor %}
 
+
+                </div>
+                <div class="col-3">
+                    ${{p.price}}
+                    -
 
                 </div>
 
@@ -101,7 +112,7 @@
 
     <div>
         {%if Pedido == "F" %}
-            <h1>Your order is in its way</h1>
+            <h1>Your order is finished and is in its way</h1>
             <p>Order number = {{order.id}}</p>
         {% endif %}
 

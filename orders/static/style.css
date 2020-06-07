@@ -7,7 +7,7 @@ li{
 #boton{
     width: 50px;
     height: 50px;
-    font-size: 9px;
+    font-size: 12px;
     padding: 1px;
     background-color:tomato;
     color: white;
@@ -66,6 +66,12 @@ hr{
     margin-top: 50px;
     margin-left: 300px;
     padding: 100px;
+}
+
+#singup{
+    max-width: 700px;
+    margin: auto;
+    padding: 50px;
 }
 
 #Pinocchio{
@@ -144,4 +150,13 @@ hr{
 .fa-shopping-cart:hover{
     color:  red;
     
+}
+
+
+#alerta{
+    background-color: tomato;
+    margin: 5px;
+    width: 300px;
+    text-align: center ;
+    margin-left: 400px;
 }

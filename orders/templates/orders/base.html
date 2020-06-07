@@ -20,27 +20,30 @@
     </head>
     <body>
 
-            <!--Navbar-->
+                 <!--Navbar-->
 
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light"  id="mainNav">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a  class="navbar-brand" href="{% url 'index' %}">Pinocchio's Pizza & Subs</a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'orders' %}">Make your order</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Log in</a>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url 'login' %}">Log out</a>
-                <li class="nav-item">
-                    <a class="nav-link float-right" href="{% url 'yourOrder' %}"><i class="fas fa-shopping-cart"></i> ({{contador}})</a>
-                
-            </ul>
-            </div>
-        </nav>    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a  class="navbar-brand" href="{% url 'index' %}">Pinocchio's Pizza & Subs</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders' %}">Make your order</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Log in</a>
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'logout' %}">Log out</a>
+            <li class="nav-item">
+                <a class="nav-link float-right" href="{% url 'yourOrder' %}"><i class="fas fa-shopping-cart"></i> <span id="contador"> ({{contador}})</span></a>
+            
+        </ul>
+        </div>
+    </nav>    
+        
+
+   
 
         {% block body %}
         {% endblock %}

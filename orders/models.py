@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Topping(models.Model):
     item = models.CharField(max_length=64)
     def __str__(self):
-        return f"{self.item}"
+        return f"{self.item} {self.id}"
 
 class Category(models.Model):
     tipo = models.CharField(max_length=64)

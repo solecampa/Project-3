@@ -6,6 +6,23 @@
 {% block body %}
 
 
+
+
+<style>
+
+    body {
+        background-color: white;
+        background-image: url("/static/pizza.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        color: white;
+        
+    }
+    
+</style>
+
+
 {% if message %}
     <div>
         {{ message }}
@@ -13,30 +30,31 @@
 {% endif %}
 
 
-<div class="container">
+<div id="singup" class="container contenedor">
+    <h1>Sing Up</h1>
     <form action="{% url 'singup' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label for="formGroupExampleInput">First Name</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="first">
+            <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="First Name" name="first" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput">Last Name</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="last">
+            <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="Last Name" name="last" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput">Email</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="email">
+            <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="Email" name="email" autocomplete="off">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Username</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="username">
+          <input type="text" class="form-control  form-control-sm" id="formGroupExampleInput" placeholder="Username" name="username" autocomplete="off">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Password</label>
-          <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" name="password">
+          <input type="password" class="form-control form-control-sm" id="formGroupExampleInput2" placeholder="Password" name="password" autocomplete="off">
         </div>
-        <button class="form-control btn bg-primary" type="submit">submit</button>
+        <button class="form-control btn bg-dark text-white" type="submit">submit</button>
     </form>
         
 </div>

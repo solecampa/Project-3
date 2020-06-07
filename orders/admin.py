@@ -26,6 +26,7 @@ class DinnerPlattersAdmin(admin.ModelAdmin):
     list_display = ( 'name', 'size', 'price')
     list_editable = ('price',)
 class SubsAdmin(admin.ModelAdmin):
+    filter_horizontal = ('topping',)
     list_display = ( 'name', 'size', 'price', 'id')
     list_editable = ('price',)
 class PedidoAdmin(admin.ModelAdmin):
