@@ -1,0 +1,45 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Sing up
+{% endblock %}
+{% block body %}
+
+
+{% if message %}
+    <div>
+        {{ message }}
+    </div>
+{% endif %}
+
+
+<div class="container">
+    <form action="{% url 'singup' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="formGroupExampleInput">First Name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="first">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Last Name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="last">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Email</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="email">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Username</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="username">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Password</label>
+          <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" name="password">
+        </div>
+        <button class="form-control btn bg-primary" type="submit">submit</button>
+    </form>
+        
+</div>
+
+
+{% endblock %}

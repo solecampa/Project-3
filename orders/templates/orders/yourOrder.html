@@ -1,0 +1,125 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block body %}
+
+<style>
+
+    body {
+        background-color: white;
+        background-image: url("/static/negro.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        color: white;
+        
+    }
+    
+    </style>
+
+
+
+ 
+
+
+<div id="items" class="container contenedor">
+    <h1 class="text-center">Your order</h1>
+    <div>
+    <ul>
+    {% for p in Pedido %}
+        <li>
+            <div class="row">
+                <div class="col-3">
+                    {{p.name}}
+                </div>
+                <div class="col-3">
+                    {% if p.category == None %}
+                        {{"-"}} 
+                    {% else %}
+                        {{p.category}}
+                    {%endif%} 
+                </div>
+                <div class="col-3">
+                    {{p.price}}
+                    -
+                    {% if p.size == None %}
+                        {{"-"}} 
+                    {% else %}
+                        {{p.size}}
+                    {%endif%} 
+                </div>
+                <div class="col-3">
+                    
+                    {% for t in p.topping.all %} 
+                        {{t}}-
+                    {% endfor %}
+
+
+                </div>
+
+                
+
+            </div>
+
+        </li>
+        {% endfor %} 
+
+    </ul>
+    </div>
+    {%if order == "" %}
+        <h1 class="float-right pt=4">Total = ${{total}} </h1>
+    {% endif %}
+    {%if Pedido == "I"%}
+        <h1 class="float-right pt=4">Total = ${{total}}! </h1>
+    {% endif %}
+    {%if Pedido == "F" or Pedido == "D"%}
+        <h1 class="float-right pt=4"></h1>
+    {% endif %}
+
+
+
+    <form id="formulario" action="{% url 'yourOrder' %}" method="post">
+        {% csrf_token %}
+        <input class="form-control-plaintext" type="hidden" value= "send"  name="send" >
+        {%if order == "" %}
+            <button  type="submit" class="btn bg-warning">Send order</button>
+        {% endif %}
+    </form>
+
+    <div>
+        {%if Pedido == "I" %}
+            <h1>we received your order , it will be ready soon </h1>
+            
+                <p>Order number = {{order.id}}</p>
+            
+            
+        {% endif %}
+    </div>
+
+    <div>
+        {%if Pedido == "F" %}
+            <h1>Your order is in its way</h1>
+            <p>Order number = {{order.id}}</p>
+        {% endif %}
+
+    </div>
+
+    <div>
+        {%if Pedido == "D" %}
+            <h1>Your last order has been delivered, make a   <a href="{% url 'orders' %}">new order</a></h1>
+            
+        {% endif %}
+
+    </div>
+
+    
+     
+</div>
+
+
+
+
+{% endblock %}

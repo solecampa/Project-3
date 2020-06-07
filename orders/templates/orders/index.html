@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <!-- fontawesome -->
+        <script src="https://kit.fontawesome.com/6e90631620.js" crossorigin="anonymous"></script>
+        
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <title>{%block title%} {% endblock %} </title>
+
+    </head>
+<body>
+
+<style>
+
+    body {
+        background-color: white;
+        background-image: url("/static/pan.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        color: white;
+        
+        
+    }
+    
+
+
+</style>
+
+
+<div id="Pinocchio" class=" text-center">
+    <h1>Pinocchio's Pizza & Subs</h1>
+    <p>74 Winthrop Street
+        Harvard Square
+        617-876-4897</p>
+
+</div>
+
+<div>
+    <div class="row aboutus"> 
+        <div class="col-5">
+            <img src="/static/building3.jpg" alt="" Mountains width="400" height="500">
+        </div>
+
+        <div class="col-7 text-justify description">
+            <p>Noch's has been in business for over 50 years! We've been feeding Harvard and the surrounding area since 1966!
+
+            We sell award-winning sicilian-style pizza and mouth-watering steak subs! We have over 750 reviews on Yelp--- check it out!
+
+            April 6th,2020 UPDATE---Pinocchio's will now be closing every night at 9:00 pm following the recommended curfew set forth by Mayor Walsh. All orders must be for takeout......you can continue to come in to the shop to order or call in. For delivery you can continue to do so thru Grubhub, Doordash and Postmates.....get your orders in by 8:00. Our wishes to everyone to stay safe....maintain social distance and wash your hands!!!!
+            </p>
+        </div>
+
+    </div>
+    <div class="Delivery text-center">
+
+        <h1>Delivey</h1>
+
+        <p> We can take orders by phone at 617-876-4897 or by email pinocchiospizza1@gmail.com<p>
+
+        <P>Now you can make your online order!!! </P>
+
+        <button class="btn orderbtn"> <a href="{% url 'orders' %}"> Order here</a></button>
+
+        <hr>
+
+        <p> Find us <a href="https://twitter.com/PinocchiosPizz"><i class="fab fa-twitter social"></i></a>  <a href="https://www.instagram.com/pinocchiospizza1/"> <i class="fab fa-instagram social"></i> </a> </p>
+
+
+
+
+    </div>
+
+</div>
+
+
+    
+</body>

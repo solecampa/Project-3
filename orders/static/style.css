@@ -1,0 +1,147 @@
+
+
+li{
+    list-style-type: none;
+}
+
+#boton{
+    width: 50px;
+    height: 50px;
+    font-size: 9px;
+    padding: 1px;
+    background-color:tomato;
+    color: white;
+   
+}
+#boton:hover, #boton2:hover, #boton3:hover{
+    background-color: red;
+}
+
+#boton2{
+    background-color:  tomato;
+    color: white;
+    font-size: 10px;
+
+}
+#boton3{
+    background-color: tomato;
+    color: rgb(252, 248, 248);
+    height: 25px;
+    width: 80px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    padding-top: 2px;
+
+
+}
+
+
+#listaboton{
+    margin-top: 37px;
+    
+}
+
+#listaboton li{
+    margin-bottom: 15px;
+}
+
+.contenedor{
+    
+    background-color: rgba(0, 0, 0, 0.507);
+    padding: 10px;
+    
+    margin: 5px;
+    margin-left: 35px;
+}
+
+.row{
+    margin-top: 30px;
+}
+hr{
+    color: white;
+}
+
+#login{
+    max-width: 700px;
+    margin-top: 50px;
+    margin-left: 300px;
+    padding: 100px;
+}
+
+#Pinocchio{
+    font-size: 30px;
+    color: rgb(253, 253, 253);
+    background-color: rgba(0, 0, 0, 0.507);
+    padding: 40px;
+    
+
+}
+
+.aboutus img{
+    padding-left: 30px;
+    margin-top: 10px;
+    
+    
+    
+}
+
+.aboutus{
+    background-color: rgba(0, 0, 0, 0.507);
+    margin-top: 0px;
+    padding-top: 100px;
+
+}
+
+.description {
+    padding-top: 50px;
+    font-size: 20px;
+    padding-right: 40px;
+    
+}
+
+.Delivery {
+    background-color: rgba(0, 0, 0, 0.507);
+}
+
+.Delivery p {
+    font-size: 20px;
+}
+
+.orderbtn{
+    background-color: tomato;
+    padding: 10px;
+    
+}
+
+.orderbtn a{
+    text-decoration: none;
+    color: white;
+}
+
+.orderbtn:hover{
+    background-color: red;
+}
+
+.social {
+    background-color: tomato;
+    color: white;
+    font-size: 30px;
+    margin: 5px;
+    padding: 7px;
+    border-radius: 50px;
+
+}
+.social:hover{
+   background-color:  red;
+
+}
+
+.fa-shopping-cart{
+    font-size: 20px;
+
+}
+
+.fa-shopping-cart:hover{
+    color:  red;
+    
+}

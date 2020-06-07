@@ -1,0 +1,642 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+
+
+{% block body %}
+
+<style>
+
+body {
+    background-color: white;
+    background-image: url("/static/negro.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    
+}
+
+</style>
+
+
+
+ 
+
+
+    {% if messages %}
+    
+    <div class="alert alert-info alert-dismissable">
+            {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        
+    </div>
+    
+    {% endif %}
+
+
+    <!-- Regular Pizza -->
+
+    <div  class="container text-center contenedor ">
+        <h1 class="text-center">Regular Pizza</h1>
+        <div class="row ">
+            <div class="col-6 text-center border-right border-white" >
+                <h3>Small</h3>
+                <ul>
+                    {% for p in Regular %}
+                    <hr>
+                    <li>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h4>{{p.name}}</h4>
+                            </div>
+                            
+                            <div class="col-9">
+
+                                <form id="formulario" action="{% url 'orders' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-9">
+                                            
+    
+                                        {%if p.name == "1 Topping" %}
+                                        <select   class="form-control-sm" name="topping"  required>
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingA"  >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingB" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                        {%if p.name == "3 Toppings" %}
+                                        <select class="form-control-sm" name="3topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+
+                                        </div>
+
+                                        <div class="col-3 columnaboton">
+                                            <input class="form-control-plaintext" type="hidden" value= "Pizza"  name="class" >
+                                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+            
+                                            <button type="submit" id="boton" class="btn " > ${{p.price}} </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+    
+    
+                                    
+                                 
+                                </form>
+
+                            </div>
+
+                            
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- LARGE -->
+
+            <div class="col-6 text-center" >
+                <h3>Large</h3>
+                <ul>
+                    {% for p in RegularLarge %}
+                    <hr>
+                    <li>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h4>{{p.name}}</h4>
+                            </div>
+                            
+                            <div class="col-9">
+
+                                <form id="formulario" action="{% url 'orders' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-9">
+                                            
+    
+                                        {%if p.name == "1 Topping" %}
+                                        <select class="form-control-sm" name="topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingA"  >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingB" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                        {%if p.name == "3 Toppings" %}
+                                        <select class="form-control-sm" name="3topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+
+                                        </div>
+
+                                        <div class="col-3 columnaboton">
+                                            <input class="form-control-plaintext" type="hidden" value= "Pizza"  name="class" >
+                                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+            
+                                            <button id="boton" class="btn  "> ${{p.price}} </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+    
+    
+                                    
+                                 
+                                </form>
+
+                            </div>
+
+                            
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            
+        </div>  
+
+    </div>
+
+
+    <!-- Sicilian Pizza -->
+
+    <div  class="container text-center contenedor ">
+        <h1 class="text-center">Sicilian Pizza</h1>
+        <div class="row ">
+            <div class="col-6 text-center text-center border-right border-white" >
+                <h3>Small</h3>
+                <ul>
+                    {% for p in Sicilian %}
+                    <hr>
+                    <li>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h4>{{p.name}}</h4>
+                            </div>
+                            
+                            <div class="col-9">
+
+                                <form id="formulario" action="{% url 'orders' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-9">
+                                            
+    
+                                        {%if p.name == "1 Topping" %}
+                                        <select class="form-control-sm" name="topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingA" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingB" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                        {%if p.name == "3 Toppings" %}
+                                        <select class="form-control-sm" name="3topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+
+                                        </div>
+
+                                        <div class="col-3 columnaboton">
+                                            <input class="form-control-plaintext" type="hidden" value= "Pizza"  name="class" >
+                                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+            
+                                            <button id="boton" class="btn  "> ${{p.price}} </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+    
+    
+                                    
+                                 
+                                </form>
+
+                            </div>
+
+                            
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- LARGE -->
+
+            <div class="col-6 text-center" >
+                <h3>Large</h3>
+                <ul>
+                    {% for p in SicilianLarge %}
+                    <hr>
+                    <li>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h4>{{p.name}}</h4>
+                            </div>
+                            
+                            <div class="col-9 columna">
+
+                                <form id="formulario" action="{% url 'orders' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <div class="row ">
+                                        <div class="col-9">
+                                            
+    
+                                        {%if p.name == "1 Topping" %}
+                                        <select class="form-control-sm" name="topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingA" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                
+                                        {%if p.name == "2 Toppings" or p.name == "3 Toppings"%}
+                                        <select class="form-control-sm" name="2toppingB" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                        {%if p.name == "3 Toppings" %}
+                                        <select class="form-control-sm" name="3topping" required >
+                                            <option value="">Pick a topping</option>
+                                            {% for t in Toppings %}
+                                                <option value="{{t.id}}">{{t}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+
+                                        </div>
+
+                                        <div class="col-3 columnaboton">
+                                            <input class="form-control-plaintext" type="hidden" value= "Pizza"  name="class" >
+                                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+            
+                                            <button id="boton" class="btn  "> ${{p.price}} </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+    
+    
+                                    
+                                 
+                                </form>
+
+                            </div>
+
+                            
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            
+        </div>  
+
+    </div>
+
+
+
+
+
+    <!-- Subs -->
+
+    
+    <div  class="container text-center contenedor ">
+        <h1 class="text-center">Subs</h1>
+        <div class="row ">
+            
+            <div class="col-3 text-center" >
+                <h3>Subs</h3>
+                <ul>
+                    {% for p in Subs %}
+                    <li>
+                        <p>{{p.name}}</p>
+                    </li>
+                    {% endfor %}
+                    <hr>
+                </ul>
+            </div>
+
+            <div class="col-3 text-center" >
+                <h3 class="ml-5">Small</h3>
+                <ul>
+                    {% for p in SubsSmall %}
+                    <li id="sublist">
+                        <form id="formulario" action="{% url 'orders' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control-plaintext" type="hidden" value= "Subs"  name="class" >
+                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+                            
+                        
+                        {%if p.id == 30 or p.id == 31 or p.id == 32 or p.id == 33 or p.id == 34 or p.id == 35 or p.id == 36 or p.id == 37%}
+                        <button id="boton3" class="btn text-center "> + {{p.price}} </button>  
+                        {% else %}
+                        <button id="boton3" class="btn text-center"> ${{p.price}} </button>
+                        {%endif%}
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+
+                
+            </div>
+            
+            <div class="col-3" >
+                <h3 class="ml-5" >Large</h3>
+                
+                <ul>
+                    {% for p in SubsLarge %}
+                    <li>
+                        <form id="formulario" action="{% url 'orders' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control-plaintext" type="hidden" value= "Subs"  name="class" >
+                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+                            
+                        
+                        {%if p.id == 30 or p.id == 31 or p.id == 32 or p.id == 33 or p.id == 34 or p.id == 35 or p.id == 36 or p.id == 37%}
+                        <button id="boton3" class="btn text-center "> + {{p.price}} </button>  
+                        {% else %}
+                        <button id="boton3" class="btn text-center"> ${{p.price}} </button>
+                        {%endif%}
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+            </div>
+
+
+            
+        </div>  
+
+
+    </div>
+
+
+
+    <!-- Pasta -->
+
+    
+    <div  class="container text-center contenedor ">
+        <h1 class="text-center">Pasta</h1>
+        <div class="row ">
+            
+            <div class="col-5 text-center" >
+                <h3>Pasta</h3>
+                <ul>
+                    {% for p in Pasta %}
+                    <li>
+                        <p>{{p.name}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-5 text-center" >
+                <h3 class="ml-5">Small</h3>
+                <ul>
+                    {% for p in Pasta %}
+                    <li>
+                    <p>{{p.price}}</p> 
+                    </li>
+                    {% endfor %}
+                </ul>
+
+
+                
+            </div>
+            <div class="col-2" >
+                
+                
+
+                <ul id="listaboton">
+                    {% for p in Pasta %}
+                    <li>
+                    <p>
+                        
+                        <form id="formulario" action="{% url 'orders' %}" method="post">
+                            {% csrf_token %}
+                            
+                            <input class="form-control-plaintext" type="hidden" value= "Pasta"  name="class" >
+                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+                            <button id="boton2" class="btn "> + </button>
+                        </form>
+        
+                    </p> 
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                
+
+                
+            </div>
+            
+
+            
+        </div>  
+
+
+    </div>
+
+  <!--   salad -->
+
+
+    <div  class="container text-center contenedor ">
+        <h1 class="text-center">Salad</h1>
+        <div class="row ">
+            
+            <div class="col-5 text-center" >
+                <h3>Salad</h3>
+                <ul>
+                    {% for p in Salad %}
+                    <li>
+                        <p>{{p.name}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-5 text-center" >
+                <h3 class="ml-5">Small</h3>
+                <ul>
+                    {% for p in Salad %}
+                    <li>
+                    <p>{{p.price}}</p> 
+                    </li>
+                    {% endfor %}
+                </ul>
+
+
+                
+            </div>
+            <div class="col-2" >
+                
+                
+
+                <ul id="listaboton">
+                    {% for p in Salad %}
+                    <li>
+                    <p>
+                        
+                        <form id="formulario" action="{% url 'orders' %}" method="post">
+                            {% csrf_token %}
+                            
+                            <input class="form-control-plaintext" type="hidden" value= "Pasta"  name="class" >
+                            <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
+                            <button id="boton2" class="btn "> + </button>
+                        </form>
+        
+                    </p> 
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                
+
+                
+            </div>
+            
+
+            
+        </div>  
+
+
+    </div>
+
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header text-dark">
+          <h4 class="modal-title">Order</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body text-dark">
+          <p>Added to your order</p>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+{% endblock %}
