@@ -43,7 +43,7 @@ def index(request):
 def orders(request):
     if request.method == "GET":
         if not request.user.is_authenticated:
-            return render(request, "orders/login.html")
+            return render(request, "orders/login.html", {"contador": "0"})
         else:
             user = request.user
             order = Order.objects.all().filter(user=user).first()
@@ -58,7 +58,7 @@ def orders(request):
                     
     if request.method == "POST":
         if not request.user.is_authenticated:
-            return render(request, "orders/login.html")
+            return render(request, "orders/login.html", {"contador": "0"})
         user = request.user
         contador = Pedido.objects.all().filter(user=user.id).count()
         context1["contador"] = contador
@@ -149,7 +149,7 @@ def orders(request):
 
 def yourOrder(request):
     if not request.user.is_authenticated:
-        return render(request, "orders/login.html")
+        return render(request, "orders/login.html", {"contador": "0"})
     else:
         user = request.user
         pedido = Pedido.objects.all().filter(user=user.id)
@@ -191,23 +191,42 @@ def yourOrder(request):
         if request.method == "POST":
             pedido2 = Pedido.objects.all().filter(user=user.id).first()
             print(pedido)
-            if pedido2 != None:
-                s = request.POST.get("send")
-                order = Order(user=user, status="Iniciated")
-                order.save()
-                for p in pedido:
-                    order.pedidos.add(p)
-                context["Pedido"]= "I"
-                context["order"] = order
-                send_mail('Pinoccios Pizza Order',
-                    '<We received your order , it will be ready soon>',
-                    'sole.prueba.app@gmail.com',
-                    [user.email],
-                )  
-                return render(request, "orders/yourOrder.html", context)
-            context["message"] = "You have no orders yet"
-            return render(request, "orders/yourOrder.html", context)
+            s = request.POST.get("send")
+            r = request.POST.get('remove')
+            rid = request.POST.get('removeid')
+            if s == "send":
+                if pedido2 != None:
+                    order = Order(user=user, status="Iniciated")
+                    order.save()
+                    for p in pedido:
+                        order.pedidos.add(p)
+                    context["Pedido"]= "I"
+                    context["order"] = order
+                    send_mail('Pinoccios Pizza Order',
+                        '<We received your order , it will be ready soon>',
+                        'sole.prueba.app@gmail.com',
+                        [user.email],
+                    )  
+                    return render(request, "orders/yourOrder.html", context)
+                else:
+                    context["message"] = "No orders yet, add some food"
+                    return render(request, "orders/yourOrder.html", context)
+            if r == "remove":
+                p = Pedido.objects.all().filter(id=rid)
+                p.delete()
+            context["message"] = "Removed"
+            contador = Pedido.objects.all().filter(user=user.id).count()
+            context["contador"] = contador
+            suma = Pedido.objects.all().filter(user=user.id).aggregate(Sum('price'))
+            if suma['price__sum'] == None:
+                total = "0"
+            else:  
+                total = float(suma['price__sum'])
+            context["total"] = total
 
+
+            return render(request, "orders/yourOrder.html", context)
+            
     
     
 
@@ -215,15 +234,23 @@ def login_view(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
     user = authenticate(request, username=username, password=password)
+    context3 = {
+        "message": "Invalid credentials.",
+        "contador": "0"
+    }
     if user is not None:
         login(request, user)
         return HttpResponseRedirect(reverse("orders"))
     else:
-        return render(request, "orders/login.html", {"message": "Invalid credentials."})
+        return render(request, "orders/login.html", context3)
 
 def logout_view(request):
     logout(request)
-    return render(request, "orders/login.html", {"message": "Logged out."})
+    context4 = {
+    "message": "Logged out.",
+    "contador": "0"
+    }
+    return render(request, "orders/login.html", context4 )
 
 
 
@@ -236,9 +263,13 @@ def singup(request):
         first = request.POST["first"]
         last = request.POST["last"]
         email = request.POST["email"]
-        user = User.objects.create_user(first, email, password)
-        user.last_name = last
-        user.save()
-        return HttpResponseRedirect(reverse("orders"))
+        try:
+            user_exists = User.objects.get(username=request.POST['username'])
+            return render(request, "orders/singup.html", {"message": "Username already exist, try another one"})
+        except User.DoesNotExist:
+            user = User.objects.create_user(first, email, password)
+            user.last_name = last
+            user.save()
+            return HttpResponseRedirect(reverse("orders"))
 
 

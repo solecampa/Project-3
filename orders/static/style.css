@@ -13,7 +13,7 @@ li{
     color: white;
    
 }
-#boton:hover, #boton2:hover, #boton3:hover{
+#boton:hover, #boton2:hover, #boton3:hover, #boton4:hover{
     background-color: red;
 }
 
@@ -23,6 +23,13 @@ li{
     font-size: 10px;
 
 }
+#boton4{
+    background-color: tomato;
+    color: rgb(252, 248, 248);
+    font-size: 15px;
+    border-radius: 20px;
+}
+
 #boton3{
     background-color: tomato;
     color: rgb(252, 248, 248);
@@ -31,9 +38,8 @@ li{
     margin-bottom: 15px;
     font-size: 12px;
     padding-top: 2px;
-
-
 }
+
 
 
 #listaboton{

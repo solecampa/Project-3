@@ -641,7 +641,7 @@ body {
                         <form id="formulario" action="{% url 'orders' %}" method="post">
                             {% csrf_token %}
                             
-                            <input class="form-control-plaintext" type="hidden" value= "Pasta"  name="class" >
+                            <input class="form-control-plaintext" type="hidden" value= "Salad"  name="class" >
                             <input class="btn btn-primary" type="hidden" value="{{p.id}}" name="selection" >
                             <button id="boton2" class="btn "> + </button>
                         </form>

@@ -44,7 +44,7 @@
                 <div class="col-3">
                     {{p.name}}
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     {% if p.category == None %}
                         {{""}} 
                     {% else %}
@@ -65,13 +65,30 @@
 
 
                 </div>
-                <div class="col-3">
-                    ${{p.price}}
-                    -
+                <div class="col-4 d-inline">
+                    
+                    
+                {{p.price}}
+                    
+                    <form form class="d-inline" action="{% url 'yourOrder' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{p.id}}" name="removeid" >
+                        <input type="hidden" value="remove" name="remove" >
+                        {%if Pedido != "None" and Pedido != "I" and Pedido != "F" and Pedido != "D" %}
+                        <button id="boton4" class="btn text-center">&times;</button>
+                        {%endif%}
+                    </form>
+                    
+
+    
+
+                
+
+                    
 
                 </div>
 
-                
+
 
             </div>
 
